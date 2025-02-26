@@ -1,0 +1,304 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+:root {
+  --sideBarColor: rgb(255, 253, 209);
+  --contentColor: rgb(250, 249, 249);
+  --projectItemsBG: rgb(202, 255, 206);
+  --trashBG: rgb(255, 117, 107);
+}
+
+body {
+  line-height: 1.5;
+
+  -webkit-font-smoothing: antialiased;
+  font-family: "Montserrat", serif;
+  font-size: 1.2rem;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 335px 1fr;
+  height: 100vh;
+}
+
+.sidebar {
+  background-color: var(--sideBarColor);
+  display: grid;
+}
+
+.content {
+  background-color: var(--contentColor);
+}
+
+.sb-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin: 0.8rem;
+}
+
+.add-task,
+.add-task-list,
+.add-sign,
+.dialog form button {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+  border: none;
+  background-color: var(--sideBarColor);
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.add-task:hover,
+.add-task-list:hover,
+.add-sign:hover,
+.dialog form button:hover {
+  box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.55);
+  background-color: rgb(230, 230, 230);
+  /* color: white; */
+}
+
+.add-task-list {
+  background-color: var(--contentColor);
+}
+
+.my-projects {
+  margin-top: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.title {
+}
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 200px;
+}
+
+.dialog {
+  position: absolute; /* Position the modal absolutely */
+  top: 0; /* Default top position */
+  left: 0; /* Default left position */
+  display: none; /* Hide the modal by default */
+  border-radius: 10px;
+  border-color: #ccc;
+  animation: dropDown 0.3s ease-in-out;
+  width: 50%;
+}
+
+.dialog[open] {
+  display: block; /* Show the modal when it's open */
+}
+
+.dialog::backdrop {
+  background: none; /* Remove the default dark backdrop */
+}
+
+.add-task-list {
+  margin: 10px 20px;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  background-color: rgb(246, 244, 244);
+}
+
+.dialog form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  color: #7b7b7b;
+}
+
+.dialog form #title{
+  width: 40%;
+  border: none;
+}
+
+.dialog form #title:focus,
+.dialog form #desc:focus {
+  outline: 1px solid #ccc; /* Add a custom border on focus (optional) */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.dialog form #desc {
+  border: none;
+}
+
+.dialog form button {
+  align-self: flex-start;
+  width: 20%;
+  background-color: #ccc;
+}
+
+.date-pri {
+  display: flex;
+  gap: 20px;
+}
+
+.Pdialog {
+  margin: 400px auto;
+}
+
+.show-tasks {
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+}
+
+.proj-title {
+  /* margin: 20px; */
+  grid-column: 2/12;
+}
+
+.task-group {
+  grid-column: 1/19;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  /* background-color: rgb(226, 224, 224); */
+  margin: 10px;
+  padding: 10px;
+}
+
+
+
+
+
+
+
+.tasks {
+  margin: 10px;
+  padding: 10px;
+}
+
+.sb-pn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  background-color: var(--sideBarColor);
+  cursor: grab;
+  transition: 0.2s ease-in-out;
+  border-radius: 5px;
+}
+
+.sb-pn:hover {
+  transform: scale(1.1);
+  background-color: var(--projectItemsBG);
+}
+
+.del-btn {
+  background-color: var(--sideBarColor);
+  border: none;
+
+  border-radius: 5px;
+}
+
+.del-btn img {
+  width: 24px;
+  height: 24px;
+}
+
+.del-btn:hover {
+  background-color: var(--trashBG);
+}
+
+.del-btn img:hover {
+  /* background-color: rgb(233, 233, 233); */
+}
+
+.p-high {
+  background-color: #ffd5d0;
+}
+
+.p-medium {
+  background-color: rgb(255, 255, 218);
+}
+
+
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+@keyframes dropDown {
+  from {
+      transform: translateY(10%); 
+      opacity: 0;
+  }
+  to {
+      transform: translateY(0); /* End at the original position */
+      opacity: 1; /* Fade in to full opacity */
+  }
+}
