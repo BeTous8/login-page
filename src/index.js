@@ -1,7 +1,9 @@
 import "./styles.css";
-
+import alertIcon from "./assets/alert.svg";
+import checkIcon from "./assets/check-circle.svg";
 
 const form = document.querySelector('form');
+const inputs = document.querySelectorAll('input');
 
 const userName = document.querySelector('#user');
 const userNameError = document.querySelector('#user + span.error');
@@ -25,19 +27,39 @@ const confPassError = document.querySelector('#conf-pass + span.error');
 // console.log(userNameError);
 
 
-function userValidation (inputField, errorField) {
+function checkCommonErrors(inputField, errorField) {
     if (inputField.validity.valueMissing) {
         console.log(inputField.validity.valueMissing);
-        errorField.textContent = "Don't leave the field empty!";
+        errorField.innerHTML = `
+            <span class='pic'><img src="${alertIcon}" height="20px" width="20px"></span>
+            <span class='text'> Don't leave the field empty</span>
+        `;
+        inputField.classList.add('invalid');
         errorField.classList.add('active')
-        return false;
+        return true;
     } else if (inputField.validity.tooShort) {
-        errorField.textContent = 'too short';
+        errorField.innerHTML = `
+            <span class='pic'><img src="${alertIcon}" height="20px" width="20px"></span>
+            <span class='text'> Too short!</span>
+        `
+        inputField.classList.add('invalid');
         errorField.classList.add('active')
+        return true;
+    }
+
+    return false;
+}
+
+function userValidation (inputField, errorField) {
+    if (checkCommonErrors(inputField, errorField)) {
         return false;
+
     } else {
-        errorField.textContent = 'Checked.';
+        errorField.innerHTML = `
+            <img src='${checkIcon}' height="20px" width="20px">
+            `;
         errorField.classList.remove('active');
+        inputField.classList.remove('invalid');
         
         return true;
     }
@@ -46,34 +68,34 @@ function userValidation (inputField, errorField) {
 // email validation
 
 function emailValidation(inputField, errorField) {
-    console.log(inputField.value)
-    // check if it is not empty
-    // check if it has min char
-    if (inputField.validity.valueMissing) {
-        console.log(inputField.validity.valueMissing);
-        errorField.textContent = "Don't leave the field empty!";
-        errorField.classList.add('active')
-        return false;
-
-    } else if (inputField.validity.tooShort) {
-        errorField.textContent = 'too short';
-        errorField.classList.add('active')
+    if (checkCommonErrors(inputField, errorField)) {
         return false;
 
     } else if (inputField.validity.typeMismatch) {
-        errorField.textContent = 'Please enter a valid email address.';
+        errorField.innerHTML = `
+            <span class='pic'><img src="${alertIcon}" height="20px" width="20px"></span>
+            <span class='text'>Please enter a valid email address.</span>
+        `
+        inputField.classList.add('invalid');
         errorField.classList.add('active')
         return false;
         
         
     } else if (!validateEmailPatern(inputField)) {
         console.log(validateEmailPatern(inputField))
-        errorField.textContent = 'Email must end with @example.com';
+        errorField.innerHTML = `
+            <span class='pic'><img src="${alertIcon}" height="20px" width="20px"></span>
+            <span class='text'>Email must end with @example.com.</span>
+        `
+        inputField.classList.add('invalid');
         errorField.classList.add('active')
         return false;
     } else {
-        errorField.textContent = 'Checked.';
-        errorField.classList.remove('active')
+        errorField.innerHTML = `
+            <img src='${checkIcon}' height="20px" width="20px">
+            `;
+        errorField.classList.remove('active');
+        inputField.classList.remove('invalid');
         return true;
     }  
 }
@@ -93,73 +115,81 @@ function validateEmailPatern(inputField) {
 
 
 function countryValidation (inputField, errorField) {
-    if (inputField.validity.valueMissing) {
-        console.log(inputField.validity.valueMissing);
-        errorField.textContent = "Don't leave the field empty!";
-        errorField.classList.add('active')
+    if (checkCommonErrors(inputField, errorField)) {
         return false;
     } else {
-        errorField.textContent = 'Checked.';
-        errorField.classList.remove('active')
+        errorField.innerHTML = `
+            <img src='${checkIcon}' height="20px" width="20px">
+            `;
+        errorField.classList.remove('active');
+        inputField.classList.remove('invalid');
         return true;
     }
 }
 
 
 function postalCodeValidation (inputField, errorField) {
-    if (inputField.validity.valueMissing) {
-        console.log(inputField.validity.valueMissing);
-        errorField.textContent = "Don't leave the field empty!";
-        errorField.classList.add('active')
+    if (checkCommonErrors(inputField, errorField)) {
         return false;
     } else if (inputField.validity.rangeUnderflow || inputField.validity.rangeOverflow) {
-        errorField.textContent = '5 digits are required';
+        errorField.innerHTML = `
+            <span class='pic'><img src="${alertIcon}" height="20px" width="20px"></span>
+            <span class='text'>5 digits are required</span>
+        `;
+        
         errorField.classList.add('active')
         return false;
     } else {
-        errorField.textContent = 'Checked.';
-        errorField.classList.remove('active')
+        errorField.innerHTML = `
+            <img src='${checkIcon}' height="20px" width="20px">
+            `;
+        errorField.classList.remove('active');
+        inputField.classList.remove('invalid');
         return true;
     }
 }
 
 
 function passwordValidation (inputField, errorField) {
-    if (inputField.validity.valueMissing) {
-        console.log(inputField.validity.valueMissing);
-        errorField.textContent = "Don't leave the field empty!";
-        errorField.classList.add('active')
-        return false;
-    } else if (inputField.validity.tooShort) {
-        console.log(inputField.validity.tooShort);
-        errorField.textContent = 'the password is weak';
-        errorField.classList.add('active')
+    if (checkCommonErrors(inputField, errorField)) {
         return false;
     } //it must have at least one capital letter
     else if (!hasCapitalLetter(inputField.value)) {
-        console.log('the function is fired');
-        errorField.textContent = 'must have at least a capital letter ';
+        errorField.innerHTML = `
+            <span class='pic'><img src="${alertIcon}" height="20px" width="20px"></span>
+            <span class='text'>must have at least a capital letter</span>
+        `;
+        inputField.classList.add('invalid');
         errorField.classList.add('active')
         return false;
     }
     else if (!hasNumber(inputField.value)) {
-        console.log('the function is fired');
-        errorField.textContent = 'must have at least a number ';
+        errorField.innerHTML = `
+            <span class='pic'><img src="${alertIcon}" height="20px" width="20px"></span>
+            <span class='text'>must have at least a number</span>
+        `;
+        inputField.classList.add('invalid');
         errorField.classList.add('active')
         return false;
     }
 
     else if (!hasSpecialChar(inputField.value)) {
-        console.log('the function is fired');
-        errorField.textContent = 'must have at least a special char';
+        errorField.innerHTML = `
+            <span class='pic'><img src="${alertIcon}" height="20px" width="20px"></span>
+            <span class='text'>must have at least a special char</span>
+        `;
+        inputField.classList.add('invalid');
         errorField.classList.add('active')
         return false;
     }
         //it must have at least one digit
         //it must have at least one special char
     else {
-        errorField.textContent = 'Checked.';
+        errorField.innerHTML = `
+            <img src='${checkIcon}' height="20px" width="20px">
+            `;
         errorField.classList.remove('active')
+        inputField.classList.remove('invalid');
         return true;
     }
 }
@@ -174,24 +204,28 @@ function hasNumber(str) {
 }
 
 function hasSpecialChar(str) {
-    return /[@,#,$,%,^,&,*]/.test(str);
+    return /[@,#,$,%,^,&,*,-,_,+,=]/.test(str);
 }
 
 
 
 function confirmPassValidation (inputField, errorField, password) {
-    if (inputField.validity.valueMissing) {
-        console.log(inputField.validity.valueMissing);
-        errorField.textContent = "Don't leave the field empty!";
-        errorField.classList.add('active')
+    if (checkCommonErrors(inputField, errorField)) {
         return false;
     } else if (inputField.value !== password.value) {
-        errorField.textContent = 'does not match';
+        errorField.innerHTML = `
+            <span class='pic'><img src="${alertIcon}" height="20px" width="20px"></span>
+            <span class='text'>does not match</span>
+        `;
+        inputField.classList.add('invalid');
         errorField.classList.add('active')
         return false;
     } else {
-        errorField.textContent = 'Checked.';
-        errorField.classList.remove('active')
+        errorField.innerHTML = `
+            <img src='${checkIcon}' height="20px" width="20px">
+            `;
+        errorField.classList.remove('active');
+        inputField.classList.remove('invalid');
         return true;
     }
 }
@@ -289,4 +323,10 @@ form.addEventListener('submit', (event) => {
     if (!isUserValid || !isEmailValid || !isCountryValid || !isPostaclValidate || !isPasswordValidate || !isConfPassValidate) {
         event.preventDefault(); // Prevent form submission if any field is invalid
     }
+});
+
+inputs.forEach(input => {
+    input.addEventListener('blur', () => {
+        input.classList.add('touched');
+    });
 });

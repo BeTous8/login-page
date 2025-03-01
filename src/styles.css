@@ -2,6 +2,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  /* outline: red solid 1px; */
 }
 
 * {
@@ -28,7 +29,7 @@ picture,
 video,
 canvas,
 svg {
-  display: block;
+  /* display: block; */
   max-width: 100%;
 }
 
@@ -82,13 +83,37 @@ h6 {
 form {
   display: flex;
   flex-direction: column;
+  gap: 20px;
+  width: 350px;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
 }
 
 span {
-  /* margin-bottom: 20px; */
-  height: 50px;
+  display: flex;
+  justify-content: start;
+  /* height: 50px; */
   width: 100%;
   /* outline: red 1px solid; */
+}
+
+.pic {
+  flex: 1;
+}
+
+span.error img {
+  filter: brightness(0) saturate(100%) invert(75%) sepia(50%) saturate(500%) hue-rotate(80deg) brightness(90%) contrast(90%);}
+
+
+span.active img {
+  filter: brightness(0) saturate(100%) invert(27%) sepia(50%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+}
+
+.text {
+  flex:8;
 }
 
 .submit-btn {
@@ -100,16 +125,9 @@ span {
   font-weight: 700;
 }
 
-.error:active {
-  background-color: rgb(7, 194, 69);
-  color: white;
+
+span.error {
   padding: 10px;
-  margin: 0 auto;
-  font-size: 0.875em;
-  font-weight: 700;
-  /* margin-top: 5px; */
-  display: block; /* Ensure the error message is displayed as a block element */
-  border-radius: 7px;
 }
 
 .error.active {
@@ -117,21 +135,30 @@ span {
   /* color: white; */
   padding: 10px;
   margin: 0 auto;
-  font-size: 0.875em;
-  font-weight: 700;
-  /* margin-top: 5px; */
-  display: block; /* Ensure the error message is displayed as a block element */
+  font-size: 0.8em;
+  font-weight: 500;
   border-radius: 7px;
 }
 
+
+
+
+/* input:focus:invalid {
+  border: 2px solid red;
+} */
+
+input.touched:invalid {
+  border: 2px solid red;
+}
 
 input:valid {
   border: 2px solid rgb(29, 143, 0);
 }
 
-input:invalid {
+input.invalid {
   border: 2px solid red;
 }
+
 
 
 @keyframes fadeIn {
