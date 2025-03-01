@@ -56,7 +56,7 @@ function userValidation (inputField, errorField) {
 
     } else {
         errorField.innerHTML = `
-            <img src='${checkIcon}' height="20px" width="20px">
+            <span class='pic'><img src='${checkIcon}' height="20px" width="20px"></span>
             `;
         errorField.classList.remove('active');
         inputField.classList.remove('invalid');
@@ -92,7 +92,7 @@ function emailValidation(inputField, errorField) {
         return false;
     } else {
         errorField.innerHTML = `
-            <img src='${checkIcon}' height="20px" width="20px">
+            <span class='pic'><img src='${checkIcon}' height="20px" width="20px"></span>
             `;
         errorField.classList.remove('active');
         inputField.classList.remove('invalid');
@@ -141,7 +141,7 @@ function postalCodeValidation (inputField, errorField) {
         return false;
     } else {
         errorField.innerHTML = `
-            <img src='${checkIcon}' height="20px" width="20px">
+            <span class='pic'><img src='${checkIcon}' height="20px" width="20px"></span>
             `;
         errorField.classList.remove('active');
         inputField.classList.remove('invalid');
@@ -186,7 +186,7 @@ function passwordValidation (inputField, errorField) {
         //it must have at least one special char
     else {
         errorField.innerHTML = `
-            <img src='${checkIcon}' height="20px" width="20px">
+            <span class='pic'><img src='${checkIcon}' height="20px" width="20px"></span>
             `;
         errorField.classList.remove('active')
         inputField.classList.remove('invalid');
@@ -222,7 +222,7 @@ function confirmPassValidation (inputField, errorField, password) {
         return false;
     } else {
         errorField.innerHTML = `
-            <img src='${checkIcon}' height="20px" width="20px">
+            <span class='pic'><img src='${checkIcon}' height="20px" width="20px"></span>
             `;
         errorField.classList.remove('active');
         inputField.classList.remove('invalid');
