@@ -13,81 +13,34 @@
   </head>
   <body>
     <div class="container">
-      <div class="sidebar">
-        <div class="sb-items">
-          <h3>Todo List</h3>
-          <button class="add-task">
-            <img src="./plus-circle.svg" width="30px" height="30px"> <span>Add Task</span>
-          </button>
-          <div class="my-projects">
-            <div class="top-row">
-              <h4 class="title">My Projects</h4>
-              <button class="add-sign">
-                <img src="./plus-circle.svg" width="30px" height="30px"> <span></span>Add Project</span></button>
-            </div>
+      <h1>Sign Up</h1>
+      <form novalidate>
+        <label for="user">Username:</label>
+        <input type="text" id="user" name="username" minlength="5" required>
+        <span class="error"></span>
 
-            <div class="project-list"></div>
-          </div>
-        </div>
-      </div>
-      <div class="content">
-        <dialog class="dialog">
-          <form method="dialog">
-            <input
-              type="text"
-              id="title"
-              name="title"
-              placeholder="add a task.."
-            />
-            <input
-              type="text"
-              id="desc"
-              name="description"
-              placeholder="more details .."
-            />
-            <div class="date-pri">
-              <label for="dueDate">Due on:</label>
-              <input type="date" id="dueDate" name="dueDate" />
-              <label for="priority">Priority:
-                <select name="priority" id="priority">
-                  <option value="low" selected="selected">Low</option>
-                  <option value="medium">Medium</option>
-                  <option value="high">High</option>
-                </select></label>
-            </div>
-            <button type="submit">Add</button>
-          </form>
-        </dialog>
-        <dialog class="Pdialog">
-          <form method="dialog">
-            <input
-              type="text"
-              id="proj"
-              name="project"
-              placeholder="add a project.."
-            />
-            <button type="submit">Add New Project</button>
-          </form>
-        </dialog>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" minlength="5" required>
+        <span class="error"></span>
 
-        <div class="task-container">
-          <div class="task-output">
-            <div class="show-tasks">
-              <h2 class="proj-title"></h2>
-              <div class="task-group"></div>
-            </div>
-          </div>
-          <div class="task-input">
-            <!-- <input type="input" name="new-task" id="new-task" placeholder="do the lundry"> -->
-            <button class="add-task-list">
-              <img src="./plus-circle.svg" width="30px" height="30px"> <span>Add Task</span>
-            </button>
-          </div>
-        </div>
-        
-        
-        
-      </div>
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country" required>
+        <span class="error"></span>
+
+        <label for="postal">Postal Code:</label>
+        <input type="number" id="postal" name="postal" min="10000" max="99999" required>
+        <span class="error"></span>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" minlength="8" required>
+        <span class="error"></span>
+
+        <label for="conf-pass">Confirmed Password:</label>
+        <input type="password" id="conf-pass" name="conf-pass" minlength="8" required>
+        <span class="error"></span>
+
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
     </div>
   </body>
 </html>
